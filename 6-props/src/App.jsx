@@ -2,7 +2,7 @@
 import './App.css'
 import FoodItems from './components/FoodItems'
 import ErrorMsg from './components/ErrorMsg'
-import Item from './components/Item'
+
 
 function App() {
     let healthyFoods = ['Daal', 'Fruits', 'Milk', 'Salad', 'Green vegetables', 'Ghee']
