@@ -1,13 +1,25 @@
 
-import css from './App.module.css'
-
+import css from  './App.module.css'
+import FoodItems from './components/FoodItems'
+import ErrorMsg from './components/ErrorMsg'
+import Container from './components/Container'
+import FoodInput from './components/FoodInput'
 function App() {
-
-
+    let healthyFoods = ['Daal', 'Fruits', 'Milk', 'Salad', 'Green vegetables', 'Ghee']
+    // let healthyFoods = []
   return (
-    <>
-      <h1>Handling events</h1>
-    </>
+      <>
+    <Container>
+        <h1 className={css.foodHeading}>Healthy food</h1>
+            <ErrorMsg foodItem={healthyFoods}></ErrorMsg>
+            <FoodInput></FoodInput>
+            <FoodItems foodItem={healthyFoods}></FoodItems>
+    </Container>
+
+    <Container>
+      <p>Above is the list of healthy food that are good for your health and well being.</p>
+    </Container>
+      </>
   )
 }
 
