@@ -1,9 +1,9 @@
 import css from './Display.module.css'
 
-const Display = () => {
+const Display = ({ displayValue }) => {
   return (
   <>
-            <input type="text" className={css.display} />
+            <input type="text" className={css.display} value={displayValue} readOnly />
   </>
 )
 }

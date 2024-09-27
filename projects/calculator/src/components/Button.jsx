@@ -1,10 +1,11 @@
 import css from './Button.module.css'
 
-const Button = ( { data }) => {
+const Button = ( { data, diplayClicked }) => {
+
   return (
     <>
           
-          {data.map(item => (<button className={css.button}>{item}</button>))}
+          {data.map(item => (<button key={item} className={css.button} onClick={() => diplayClicked(item)}>{item}</button>))}
     </>
   )
 }
