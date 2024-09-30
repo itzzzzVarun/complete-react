@@ -5,6 +5,7 @@ import TodoItems from './components/TodoItems'
 import WelcomeMsg from './components/WelcomeMsg'
 import './App.css'
 import { useState } from 'react'
+import { DataContext } from './store/data-store'
 
 
 function App() {
@@ -23,18 +24,24 @@ function App() {
 
 
 
-  const handleAdd = (addedTask, addedDate) => {
-    const newData = [...data, {task: addedTask, date: addedDate}]
-    setData(newData)
+  const handleAdd = (addedTask, addedDate) => {  setData((currValue) => [...currValue, {task: addedTask, date: addedDate}])
   }
 
 
-  return <center className='todo-container'>
+  return (
+    <DataContext.Provider value={{
+      todoItems:data,
+      addNewItem: handleAdd,
+      deleteItem: handleDelete
+    }}>
+     <center className='todo-container'>
       <AppName />   
-      <AddToDo hanldeOnClickAdd = {handleAdd}  />
-      {data.length === 0 && <WelcomeMsg ></WelcomeMsg>}
-      <TodoItems TodoItems = {data} hanldeOnClickDelete={handleDelete}></TodoItems>
+      <AddToDo />
+       <WelcomeMsg />
+      <TodoItems />
   </center>
+</DataContext.Provider>
+  )
 }
 
 export default App

@@ -23,9 +23,7 @@ function App() {
 
 
 
-  const handleAdd = (addedTask, addedDate) => {
-    const newData = [...data, {task: addedTask, date: addedDate}]
-    setData(newData)
+  const handleAdd = (addedTask, addedDate) => {  setData((currValue) => [...currValue, {task: addedTask, date: addedDate}])
   }
 
 

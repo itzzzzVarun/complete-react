@@ -8,7 +8,7 @@ function FoodItems ({ foodItem }) {
     let newItems = [...activeItems, item]
     setActiveItem(newItems);
   }
-  return (
+  return ( 
     <>
       <ul className="list-group">
       {foodItem.map(item => 
