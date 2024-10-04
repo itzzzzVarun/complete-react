@@ -1,23 +1,68 @@
+import { useContext, useRef } from "react"
+import { PostList }from "../store/post-list-store";
+
 const CreatePost = () => {
+
+  const { addPost } = useContext(PostList);
+
+  const  userIdElement = useRef();
+  const  postTitleElement = useRef();
+  const  postBodyElement = useRef();
+  const  postTagsElement = useRef(); 
+  const  postReactionsElement = useRef(); 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const userId = userIdElement.current.value;
+    const postTitle = postTitleElement.current.value;
+    const postBody = postBodyElement.current.value;
+    const postReactions = postReactionsElement.current.value;
+    const postTags = postTagsElement.current.value.split(" ");
+
+    userIdElement.current.value = ""
+    postTitleElement.current.value = ""
+    postBodyElement.current.value = ""
+    postReactionsElement.current.value = ""
+    postTagsElement.current.value = ""
+
+
+    addPost(userId, postTitle, postBody, postReactions, postTags);
+  }
+ 
   return (
-  <form className="px-4 py-3">
-    <div className="mb-3">
-      <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>
-      <input type="email" className="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" />
+  <form className="create-post" onSubmit={handleSubmit}>
+      <div className="mb-3">
+      <label htmlFor="userId" className="form-label">User ID</label>
+      <input type="text" 
+      ref={userIdElement}
+      className="form-control" id="userId" placeholder="Enter your userId..." />
     </div>
     <div className="mb-3">
-      <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>
-      <input type="password" className="form-control" id="exampleDropdownFormPassword1" placeholder="Password" />
+      <label htmlFor="title" className="form-label">Post Title</label>
+      <input type="text" 
+      ref={postTitleElement}
+      className="form-control" id="title" placeholder="How are you feeling today..." />
     </div>
     <div className="mb-3">
-      <div className="form-check">
-        <input type="checkbox" className="form-check-input" id="dropdownCheck" />
-        <label className="form-check-label" htmlFor="dropdownCheck">
-          Remember me
-        </label>
-      </div>
+      <label htmlFor="body" className="form-label">Post Description</label>
+      <textarea type="text"
+      ref={postBodyElement}
+      rows="4" className="form-control" id="body" placeholder="Tell us more about it" />
     </div>
-    <button type="submit" className="btn btn-primary">Sign in</button>
+    <div className="mb-3">
+      <label htmlFor="reactions" className="form-label">Reactions</label>
+      <input type="text"
+      ref={postReactionsElement}
+      rows="4" className="form-control" id="reactions" placeholder="Enter Reactions..." />
+    </div>
+    <div className="mb-3">
+      <label htmlFor="tags" className="form-label">HashTags</label>
+      <input type="text" 
+      ref={postTagsElement}
+      className="form-control" id="tags" placeholder="Enter hashtags..." />
+    </div>
+
+    <button type="submit" className="btn btn-primary">Post</button>
   </form>
   )
 }
