@@ -1,3 +1,4 @@
+
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header'
@@ -8,7 +9,7 @@ import PrivacyMsg from './components/PrivacyMsg'
 import { useSelector } from 'react-redux'
 function App() {
 
-  const privacy = useSelector(store => store.PRIVACY_TOGGLE);
+  const privacy = useSelector(store => store.privacy);
   return (
       <center className="px-4 py-5 my-5">
         <Container>
